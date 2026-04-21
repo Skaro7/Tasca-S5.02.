@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="Add initial project files and configuration" />
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="add initial project configuration files for compiler and remote repositories">
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +45,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "3-1-registro-de-usuario",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "C:/Users/Usuario/IdeaProjects/Tasca-S5.02/src/main/java/org/example/Main.java"
   }
@@ -71,12 +73,21 @@
       <option name="project" value="LOCAL" />
       <updated>1776761677245</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add initial project configuration files for compiler and remote repositories">
+      <option name="closed" value="true" />
+      <created>1776767320827</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776767320827</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add initial project files and configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add initial project files and configuration" />
+    <MESSAGE value="add initial project configuration files for compiler and remote repositories" />
+    <option name="LAST_COMMIT_MESSAGE" value="add initial project configuration files for compiler and remote repositories" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

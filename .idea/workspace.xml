@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="refactor: update project configuration for compiler and remote repositories" />
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="refactor: update workspace configuration and task summaries for initial project setup">
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776768201970</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactor: update workspace configuration and task summaries for initial project setup">
+      <option name="closed" value="true" />
+      <created>1776768313569</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776768313569</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -103,7 +116,8 @@
     <MESSAGE value="add initial project configuration files for compiler and remote repositories" />
     <MESSAGE value="add .gitignore and update workspace configuration for initial project setup" />
     <MESSAGE value="refactor: update project configuration for compiler and remote repositories" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: update project configuration for compiler and remote repositories" />
+    <MESSAGE value="refactor: update workspace configuration and task summaries for initial project setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: update workspace configuration and task summaries for initial project setup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

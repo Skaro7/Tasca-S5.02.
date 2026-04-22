@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: update project configuration and add support for annotation processing">
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/request/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/response/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/entity/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/exception/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/security/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/org/example/Main.java" beforeDir="false" />
-    </list>
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add User entity with fields for id, username, email, password, and roles" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +14,13 @@
     <persistenceIdMap>
       <entry key="_C:/Users/Usuario/IdeaProjects/Tasca-S5.02" value="3Cezgz7ixJmV3rptVEkohzHSOiR" />
     </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Tasca-S5.02" />
@@ -52,6 +47,9 @@
     "repository": "Tasca-S5.02."
   }
 }]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 4
 }]]></component>
@@ -158,7 +156,71 @@
       <option name="project" value="LOCAL" />
       <updated>1776848993941</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: add .gitkeep files to maintain directory structure">
+      <option name="closed" value="true" />
+      <created>1776849680726</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849680726</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: add recent file paths to workspace configuration for improved navigation">
+      <option name="closed" value="true" />
+      <created>1776849860884</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849860884</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: add Category entity with fields for id, name, description, and products">
+      <option name="closed" value="true" />
+      <created>1776849872867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849872867</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: add Order entity with fields for id, user, items, total, status, and createdAt">
+      <option name="closed" value="true" />
+      <created>1776849881056</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849881056</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: add OrderItem entity with fields for id, order, product, quantity, and priceAtPurchase">
+      <option name="closed" value="true" />
+      <created>1776849893360</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849893360</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: add Product entity with fields for id, name, description, price, stock, imageUrl, and category">
+      <option name="closed" value="true" />
+      <created>1776849901826</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849901826</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: add Role entity with fields for id and name">
+      <option name="closed" value="true" />
+      <created>1776849910392</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849910392</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: add User entity with fields for id, username, email, password, and roles">
+      <option name="closed" value="true" />
+      <created>1776849916669</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1776849916669</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -169,7 +231,15 @@
     <MESSAGE value="refactor: update workspace configuration and task summaries for initial project setup" />
     <MESSAGE value="feat: add initial backend application structure with Maven wrapper" />
     <MESSAGE value="feat: update project configuration and add support for annotation processing" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update project configuration and add support for annotation processing" />
+    <MESSAGE value="feat: add .gitkeep files to maintain directory structure" />
+    <MESSAGE value="feat: add recent file paths to workspace configuration for improved navigation" />
+    <MESSAGE value="feat: add Category entity with fields for id, name, description, and products" />
+    <MESSAGE value="feat: add Order entity with fields for id, user, items, total, status, and createdAt" />
+    <MESSAGE value="feat: add OrderItem entity with fields for id, order, product, quantity, and priceAtPurchase" />
+    <MESSAGE value="feat: add Product entity with fields for id, name, description, price, stock, imageUrl, and category" />
+    <MESSAGE value="feat: add Role entity with fields for id and name" />
+    <MESSAGE value="feat: add User entity with fields for id, username, email, password, and roles" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add User entity with fields for id, username, email, password, and roles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

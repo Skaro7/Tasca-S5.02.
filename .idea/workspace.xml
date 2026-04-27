@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add UserRepository interface for User entity data access">
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/CategoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/OrderItemRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/ProductRepository.java" afterDir="false" />
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add ProductRepository interface for Product entity data access">
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +67,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BackendApplication.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -90,6 +89,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\IdeaProjects\Tasca-S5.02\src\main\java\com\sonsoflilith\backend\service\impl" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sonsoflilith.backend.BackendApplication" />
+      <module name="Tasca-S5.02." />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sonsoflilith.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BackendApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -250,7 +269,47 @@
       <option name="project" value="LOCAL" />
       <updated>1776850275124</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat: update workspace configuration and task summaries for new repository interfaces">
+      <option name="closed" value="true" />
+      <created>1777280536099</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1777280536099</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: add CategoryRepository interface for Category entity data access">
+      <option name="closed" value="true" />
+      <created>1777280545574</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1777280545574</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat: add OrderItemRepository interface for OrderItem entity data access">
+      <option name="closed" value="true" />
+      <created>1777280556169</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1777280556169</updated>
+    </task>
+    <task id="LOCAL-00022" summary="feat: add OrderRepository interface for Order entity data access">
+      <option name="closed" value="true" />
+      <created>1777280574046</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1777280574046</updated>
+    </task>
+    <task id="LOCAL-00023" summary="feat: add ProductRepository interface for Product entity data access">
+      <option name="closed" value="true" />
+      <created>1777280586566</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1777280586566</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -272,7 +331,12 @@
     <MESSAGE value="feat: update workspace configuration and task summaries for improved project setup" />
     <MESSAGE value="feat: add RoleRepository interface for Role entity data access" />
     <MESSAGE value="feat: add UserRepository interface for User entity data access" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add UserRepository interface for User entity data access" />
+    <MESSAGE value="feat: update workspace configuration and task summaries for new repository interfaces" />
+    <MESSAGE value="feat: add CategoryRepository interface for Category entity data access" />
+    <MESSAGE value="feat: add OrderItemRepository interface for OrderItem entity data access" />
+    <MESSAGE value="feat: add OrderRepository interface for Order entity data access" />
+    <MESSAGE value="feat: add ProductRepository interface for Product entity data access" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add ProductRepository interface for Product entity data access" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

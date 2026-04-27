@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="refactor: update workspace configuration and task summaries for initial project setup">
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/Usuario/IdeaProjects/Tasca-S5.02" value="3Cezgz7ixJmV3rptVEkohzHSOiR" />
+    </persistenceIdMap>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Tasca-S5.02" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Skaro7"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Skaro7/Tasca-S5.02..git",
+    "accountId": "4d65cb67-d1ed-4c09-8b0f-bfcc741fca35"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="3Cezgz7ixJmV3rptVEkohzHSOiR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "git-widget-placeholder": "3-1-registro-de-usuario",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "C:/Users/Usuario/IdeaProjects/Tasca-S5.02/src/main/java/org/example/Main.java"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="" />
+      <created>1776760950215</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776760950215</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add initial project files and configuration">
+      <option name="closed" value="true" />
+      <created>1776761677245</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776761677245</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add initial project configuration files for compiler and remote repositories">
+      <option name="closed" value="true" />
+      <created>1776767320827</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776767320827</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add .gitignore and update workspace configuration for initial project setup">
+      <option name="closed" value="true" />
+      <created>1776767948773</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776767948773</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactor: update project configuration for compiler and remote repositories">
+      <option name="closed" value="true" />
+      <created>1776768201970</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776768201970</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactor: update workspace configuration and task summaries for initial project setup">
+      <option name="closed" value="true" />
+      <created>1776768313569</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776768313569</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add initial project files and configuration" />
+    <MESSAGE value="add initial project configuration files for compiler and remote repositories" />
+    <MESSAGE value="add .gitignore and update workspace configuration for initial project setup" />
+    <MESSAGE value="refactor: update project configuration for compiler and remote repositories" />
+    <MESSAGE value="refactor: update workspace configuration and task summaries for initial project setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: update workspace configuration and task summaries for initial project setup" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../Tasca-S5.02/src/main/java/org/example/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

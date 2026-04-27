@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add ProductRepository interface for Product entity data access">
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/docker-compose.yml" afterDir="false" />
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: configure application properties for server, database, JPA, JWT, and admin settings">
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/DataInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/request/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/response/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/impl/AuthServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/request/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/response/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/impl/.gitkeep" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +82,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "feature/2-login-usuario",
+    "git-widget-placeholder": "feature/1-registro-usuario",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Usuario/IdeaProjects/Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service",
     "onboarding.tips.debug.path": "C:/Users/Usuario/IdeaProjects/Tasca-S5.02/src/main/java/org/example/Main.java",
@@ -309,11 +320,42 @@
       <option name="project" value="LOCAL" />
       <updated>1777280586566</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat: add UserRepository interface for User entity data access">
+      <option name="closed" value="true" />
+      <created>1777281637866</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1777281637866</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: add docker-compose configuration for MySQL service">
+      <option name="closed" value="true" />
+      <created>1777281648625</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1777281648625</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: enable default profile for annotation processing in compiler configuration">
+      <option name="closed" value="true" />
+      <created>1777281661850</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1777281661850</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat: configure application properties for server, database, JPA, JWT, and admin settings">
+      <option name="closed" value="true" />
+      <created>1777281676002</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1777281676002</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add initial project files and configuration" />
     <MESSAGE value="add initial project configuration files for compiler and remote repositories" />
     <MESSAGE value="add .gitignore and update workspace configuration for initial project setup" />
     <MESSAGE value="refactor: update project configuration for compiler and remote repositories" />
@@ -330,13 +372,16 @@
     <MESSAGE value="feat: add User entity with fields for id, username, email, password, and roles" />
     <MESSAGE value="feat: update workspace configuration and task summaries for improved project setup" />
     <MESSAGE value="feat: add RoleRepository interface for Role entity data access" />
-    <MESSAGE value="feat: add UserRepository interface for User entity data access" />
     <MESSAGE value="feat: update workspace configuration and task summaries for new repository interfaces" />
     <MESSAGE value="feat: add CategoryRepository interface for Category entity data access" />
     <MESSAGE value="feat: add OrderItemRepository interface for OrderItem entity data access" />
     <MESSAGE value="feat: add OrderRepository interface for Order entity data access" />
     <MESSAGE value="feat: add ProductRepository interface for Product entity data access" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add ProductRepository interface for Product entity data access" />
+    <MESSAGE value="feat: add UserRepository interface for User entity data access" />
+    <MESSAGE value="feat: add docker-compose configuration for MySQL service" />
+    <MESSAGE value="feat: enable default profile for annotation processing in compiler configuration" />
+    <MESSAGE value="feat: configure application properties for server, database, JPA, JWT, and admin settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: configure application properties for server, database, JPA, JWT, and admin settings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add User entity with fields for id, username, email, password, and roles" />
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add UserRepository interface for User entity data access">
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/OrderItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,7 +226,31 @@
       <option name="project" value="LOCAL" />
       <updated>1776849916669</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: update workspace configuration and task summaries for improved project setup">
+      <option name="closed" value="true" />
+      <created>1776850208162</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1776850208162</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat: add RoleRepository interface for Role entity data access">
+      <option name="closed" value="true" />
+      <created>1776850220402</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1776850220402</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat: add UserRepository interface for User entity data access">
+      <option name="closed" value="true" />
+      <created>1776850275124</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1776850275124</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -239,7 +269,10 @@
     <MESSAGE value="feat: add Product entity with fields for id, name, description, price, stock, imageUrl, and category" />
     <MESSAGE value="feat: add Role entity with fields for id and name" />
     <MESSAGE value="feat: add User entity with fields for id, username, email, password, and roles" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add User entity with fields for id, username, email, password, and roles" />
+    <MESSAGE value="feat: update workspace configuration and task summaries for improved project setup" />
+    <MESSAGE value="feat: add RoleRepository interface for Role entity data access" />
+    <MESSAGE value="feat: add UserRepository interface for User entity data access" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add UserRepository interface for User entity data access" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

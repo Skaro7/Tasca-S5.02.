@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add user registration endpoint with Spring Security">
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: update workspace configuration to reflect user registration endpoint changes">
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/request/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/security/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/security/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +80,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "feature/1-registro-usuario",
+    "git-widget-placeholder": "feature/2-login-usuario",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Usuario/IdeaProjects/Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service",
     "onboarding.tips.debug.path": "C:/Users/Usuario/IdeaProjects/Tasca-S5.02/src/main/java/org/example/Main.java",
@@ -355,11 +366,18 @@
       <option name="project" value="LOCAL" />
       <updated>1777286870223</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="feat: update workspace configuration to reflect user registration endpoint changes">
+      <option name="closed" value="true" />
+      <created>1777366457954</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1777366457954</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: update project configuration for compiler and remote repositories" />
     <MESSAGE value="refactor: update workspace configuration and task summaries for initial project setup" />
     <MESSAGE value="feat: add initial backend application structure with Maven wrapper" />
     <MESSAGE value="feat: update project configuration and add support for annotation processing" />
@@ -384,7 +402,8 @@
     <MESSAGE value="feat: configure application properties for server, database, JPA, JWT, and admin settings" />
     <MESSAGE value="deleted gitkeep" />
     <MESSAGE value="feat: add user registration endpoint with Spring Security" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add user registration endpoint with Spring Security" />
+    <MESSAGE value="feat: update workspace configuration to reflect user registration endpoint changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update workspace configuration to reflect user registration endpoint changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

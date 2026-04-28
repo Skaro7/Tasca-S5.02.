@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: configure application properties for server, database, JPA, JWT, and admin settings">
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/DataInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/request/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/response/AuthResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/impl/AuthServiceImpl.java" afterDir="false" />
+    <list default="true" id="18fd3927-84e6-4f39-ba0a-ee035285f5a4" name="Changes" comment="feat: add user registration endpoint with Spring Security">
       <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/config/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/controller/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/request/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/dto/response/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasca-S5.02/src/main/java/com/sonsoflilith/backend/service/impl/.gitkeep" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,12 +339,26 @@
       <option name="project" value="LOCAL" />
       <updated>1777281676002</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="deleted gitkeep">
+      <option name="closed" value="true" />
+      <created>1777286845191</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1777286845191</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: add user registration endpoint with Spring Security">
+      <option name="closed" value="true" />
+      <created>1777286870223</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1777286870223</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add initial project configuration files for compiler and remote repositories" />
-    <MESSAGE value="add .gitignore and update workspace configuration for initial project setup" />
     <MESSAGE value="refactor: update project configuration for compiler and remote repositories" />
     <MESSAGE value="refactor: update workspace configuration and task summaries for initial project setup" />
     <MESSAGE value="feat: add initial backend application structure with Maven wrapper" />
@@ -381,7 +382,9 @@
     <MESSAGE value="feat: add docker-compose configuration for MySQL service" />
     <MESSAGE value="feat: enable default profile for annotation processing in compiler configuration" />
     <MESSAGE value="feat: configure application properties for server, database, JPA, JWT, and admin settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: configure application properties for server, database, JPA, JWT, and admin settings" />
+    <MESSAGE value="deleted gitkeep" />
+    <MESSAGE value="feat: add user registration endpoint with Spring Security" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add user registration endpoint with Spring Security" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

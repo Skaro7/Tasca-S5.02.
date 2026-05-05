@@ -1,6 +1,7 @@
 package com.sonsoflilith.backend.service.impl;
 
 import com.sonsoflilith.backend.dto.request.ProductRequest;
+import com.sonsoflilith.backend.dto.response.PagedResponse;
 import com.sonsoflilith.backend.dto.response.ProductResponse;
 import com.sonsoflilith.backend.entity.Category;
 import com.sonsoflilith.backend.entity.Product;
@@ -10,9 +11,8 @@ import com.sonsoflilith.backend.repository.CategoryRepository;
 import com.sonsoflilith.backend.repository.ProductRepository;
 import com.sonsoflilith.backend.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +20,47 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+
+    // ── Helper ────────────────────────────────────────────────────────────────
+
+    private Pageable buildPageable(int page, int size, String sort) {
+        return PageRequest.of(page, size, Sort.by(sort).ascending());
+    }
+
+    // ── Queries ───────────────────────────────────────────────────────────────
+
+    @Override
+    public ProductResponse getById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+        return mapToResponse(product);
+    }
+
+    @Override
+    public PagedResponse<ProductResponse> getAll(int page, int size, String sort) {
+        return PagedResponse.from(
+                productRepository.findByActiveTrue(buildPageable(page, size, sort))
+                        .map(this::mapToResponse)
+        );
+    }
+
+    @Override
+    public PagedResponse<ProductResponse> getAllIncludingInactive(int page, int size, String sort) {
+        return PagedResponse.from(
+                productRepository.findAll(buildPageable(page, size, sort))
+                        .map(this::mapToResponse)
+        );
+    }
+
+    @Override
+    public PagedResponse<ProductResponse> getByCategory(Long categoryId, int page, int size, String sort) {
+        return PagedResponse.from(
+                productRepository.findByCategoryIdAndActiveTrue(categoryId, buildPageable(page, size, sort))
+                        .map(this::mapToResponse)
+        );
+    }
+
+    // ── Commands ──────────────────────────────────────────────────────────────
 
     @Override
     public ProductResponse create(ProductRequest request) {
@@ -36,37 +77,6 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.save(product);
         return mapToResponse(product);
-    }
-
-    @Override
-    public ProductResponse getById(Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException(id));
-        return mapToResponse(product);
-    }
-
-    @Override
-    public List<ProductResponse> getAll() {
-        return productRepository.findByActiveTrue()
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
-    }
-
-    @Override
-    public List<ProductResponse> getAllIncludingInactive() {
-        return productRepository.findAll()
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
-    }
-
-    @Override
-    public List<ProductResponse> getByCategory(Long categoryId) {
-        return productRepository.findByCategoryIdAndActiveTrue(categoryId)
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
     }
 
     @Override
@@ -99,6 +109,8 @@ public class ProductServiceImpl implements ProductService {
         product.setActive(false);
         productRepository.save(product);
     }
+
+    // ── Mapper ────────────────────────────────────────────────────────────────
 
     private ProductResponse mapToResponse(Product product) {
         return new ProductResponse(

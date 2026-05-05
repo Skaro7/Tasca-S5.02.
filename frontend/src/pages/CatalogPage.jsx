@@ -3,25 +3,35 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api/axios';
 
+const PAGE_SIZE = 12;
+
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     api.get('/categories').then(res => setCategories(res.data));
-    api.get('/products').then(res => setProducts(res.data));
   }, []);
+
+  useEffect(() => {
+    const params = { page, size: PAGE_SIZE, sort: 'name' };
+    const url = selectedCategory ? `/products/category/${selectedCategory}` : '/products';
+    api.get(url, { params }).then(res => {
+      setProducts(res.data.content);
+      setTotalPages(res.data.totalPages);
+      setTotalElements(res.data.totalElements);
+    });
+  }, [selectedCategory, page]);
 
   const filterByCategory = (categoryId) => {
     setSelectedCategory(categoryId);
-    if (categoryId) {
-      api.get(`/products/category/${categoryId}`).then(res => setProducts(res.data));
-    } else {
-      api.get('/products').then(res => setProducts(res.data));
-    }
+    setPage(0);
   };
 
   const handleLogout = () => {
@@ -65,6 +75,10 @@ export default function CatalogPage() {
         ))}
       </div>
 
+      {totalElements > 0 && (
+        <p style={styles.resultsText}>{totalElements} producto{totalElements !== 1 ? 's' : ''}</p>
+      )}
+
       <div style={styles.grid}>
         {products.map(product => (
           <div key={product.id} style={styles.card}>
@@ -96,6 +110,36 @@ export default function CatalogPage() {
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div style={styles.pagination}>
+          <button
+            style={page === 0 ? styles.pageBtnDisabled : styles.pageBtn}
+            onClick={() => setPage(p => p - 1)}
+            disabled={page === 0}
+          >
+            ← Anterior
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              style={i === page ? styles.pageActive : styles.pageBtn}
+              onClick={() => setPage(i)}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            style={page === totalPages - 1 ? styles.pageBtnDisabled : styles.pageBtn}
+            onClick={() => setPage(p => p + 1)}
+            disabled={page === totalPages - 1}
+          >
+            Siguiente →
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -115,6 +159,7 @@ const styles = {
   filters: { display: 'flex', gap: '0.5rem', padding: '1rem 2rem', flexWrap: 'wrap' },
   filterBtn: { backgroundColor: 'transparent', border: '1px solid #9B4DB8', color: '#9B4DB8', padding: '0.4rem 1rem', borderRadius: '20px', cursor: 'pointer' },
   filterActive: { backgroundColor: '#9B4DB8', border: '1px solid #9B4DB8', color: '#fff', padding: '0.4rem 1rem', borderRadius: '20px', cursor: 'pointer' },
+  resultsText: { color: '#666', fontSize: '0.85rem', padding: '0 2rem 0.5rem', margin: 0 },
   grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem', padding: '1rem 2rem' },
   card: { backgroundColor: '#1a1a1a', borderRadius: '12px', border: '1px solid #2a2a2a', overflow: 'hidden', transition: 'border-color 0.2s' },
   imageContainer: { height: '200px', overflow: 'hidden', backgroundColor: '#2a2a2a' },
@@ -130,4 +175,8 @@ const styles = {
   outOfStock: { color: '#ff4444', fontSize: '0.8rem' },
   addBtn: { width: '100%', padding: '0.6rem', backgroundColor: '#9B4DB8', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer' },
   addBtnDisabled: { width: '100%', padding: '0.6rem', backgroundColor: '#444', color: '#888', border: 'none', borderRadius: '8px', cursor: 'not-allowed' },
+  pagination: { display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', padding: '2rem' },
+  pageBtn: { backgroundColor: 'transparent', border: '1px solid #9B4DB8', color: '#9B4DB8', padding: '0.5rem 0.9rem', borderRadius: '8px', cursor: 'pointer' },
+  pageActive: { backgroundColor: '#9B4DB8', border: '1px solid #9B4DB8', color: '#fff', padding: '0.5rem 0.9rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' },
+  pageBtnDisabled: { backgroundColor: 'transparent', border: '1px solid #333', color: '#444', padding: '0.5rem 0.9rem', borderRadius: '8px', cursor: 'not-allowed' },
 };

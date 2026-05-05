@@ -5,6 +5,7 @@ import com.sonsoflilith.backend.dto.request.RegisterRequest;
 import com.sonsoflilith.backend.dto.response.AuthResponse;
 import com.sonsoflilith.backend.entity.Role;
 import com.sonsoflilith.backend.entity.User;
+import com.sonsoflilith.backend.exception.UserNotFoundException;
 import com.sonsoflilith.backend.repository.RoleRepository;
 import com.sonsoflilith.backend.repository.UserRepository;
 import com.sonsoflilith.backend.security.JwtService;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -57,7 +59,11 @@ public class AuthServiceImpl implements AuthService {
         UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
         String token = jwtService.generateToken(userDetails);
 
-        return new AuthResponse(token, user.getUsername(), user.getEmail());
+        List<String> roleNames = user.getRoles().stream()
+                .map(role -> role.getName().name())
+                .toList();
+
+        return new AuthResponse(token, user.getUsername(), user.getEmail(), roleNames);
     }
 
     @Override
@@ -73,8 +79,12 @@ public class AuthServiceImpl implements AuthService {
         String token = jwtService.generateToken(userDetails);
 
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(request.getUsername()));
 
-        return new AuthResponse(token, user.getUsername(), user.getEmail());
+        List<String> roleNames = user.getRoles().stream()
+                .map(role -> role.getName().name())
+                .toList();
+
+        return new AuthResponse(token, user.getUsername(), user.getEmail(), roleNames);
     }
 }

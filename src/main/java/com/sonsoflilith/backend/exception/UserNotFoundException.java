@@ -1,4 +1,7 @@
 package com.sonsoflilith.backend.exception;
 
-public class UserNotFoundException {
+public class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException(String username) {
+        super("User not found: " + username);
+    }
 }

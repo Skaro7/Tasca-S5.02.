@@ -8,6 +8,9 @@ import com.sonsoflilith.backend.entity.Order;
 import com.sonsoflilith.backend.entity.OrderItem;
 import com.sonsoflilith.backend.entity.Product;
 import com.sonsoflilith.backend.entity.User;
+import com.sonsoflilith.backend.exception.OrderNotFoundException;
+import com.sonsoflilith.backend.exception.ProductNotFoundException;
+import com.sonsoflilith.backend.exception.UserNotFoundException;
 import com.sonsoflilith.backend.repository.OrderRepository;
 import com.sonsoflilith.backend.repository.ProductRepository;
 import com.sonsoflilith.backend.repository.UserRepository;
@@ -31,14 +34,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse create(OrderRequest request, String username) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(username));
 
         List<OrderItem> items = new ArrayList<>();
         BigDecimal total = BigDecimal.ZERO;
 
         for (OrderItemRequest itemRequest : request.getItems()) {
             Product product = productRepository.findById(itemRequest.getProductId())
-                    .orElseThrow(() -> new RuntimeException("Product not found: " + itemRequest.getProductId()));
+                    .orElseThrow(() -> new ProductNotFoundException(itemRequest.getProductId()));
 
             if (product.getStock() < itemRequest.getQuantity()) {
                 throw new RuntimeException("Insufficient stock for: " + product.getName());
@@ -72,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderResponse> getMyOrders(String username) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(username));
         return orderRepository.findByUserId(user.getId())
                 .stream()
                 .map(this::mapToResponse)
@@ -90,7 +93,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(Long id) {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new OrderNotFoundException(id));
         orderRepository.delete(order);
     }
 

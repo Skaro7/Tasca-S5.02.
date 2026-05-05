@@ -28,6 +28,9 @@ public class Product {
     @Column
     private String imageUrl;
 
+    @Column(nullable = false)
+    private boolean active = true;
+
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;

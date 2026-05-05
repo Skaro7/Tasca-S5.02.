@@ -26,4 +26,6 @@ public class ProductRequest {
 
     @NotNull(message = "Category is required")
     private Long categoryId;
+
+    private Boolean active;
 }

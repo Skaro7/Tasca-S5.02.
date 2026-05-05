@@ -2,10 +2,10 @@ package com.sonsoflilith.backend.repository;
 
 import com.sonsoflilith.backend.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findByCategoryId(Long categoryId);
-    List<Product> findByActiveTrue();
-    List<Product> findByCategoryIdAndActiveTrue(Long categoryId);
+    Page<Product> findByActiveTrue(Pageable pageable);
+    Page<Product> findByCategoryIdAndActiveTrue(Long categoryId, Pageable pageable);
 }

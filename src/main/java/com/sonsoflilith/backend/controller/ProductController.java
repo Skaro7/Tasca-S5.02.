@@ -1,6 +1,7 @@
 package com.sonsoflilith.backend.controller;
 
 import com.sonsoflilith.backend.dto.request.ProductRequest;
+import com.sonsoflilith.backend.dto.response.PagedResponse;
 import com.sonsoflilith.backend.dto.response.ProductResponse;
 import com.sonsoflilith.backend.service.ProductService;
 import jakarta.validation.Valid;
@@ -10,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
@@ -20,8 +19,11 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<ProductResponse>> getAll() {
-        return ResponseEntity.ok(productService.getAll());
+    public ResponseEntity<PagedResponse<ProductResponse>> getAll(
+            @RequestParam(defaultValue = "0")    int page,
+            @RequestParam(defaultValue = "12")   int size,
+            @RequestParam(defaultValue = "name") String sort) {
+        return ResponseEntity.ok(productService.getAll(page, size, sort));
     }
 
     @GetMapping("/{id}")
@@ -30,8 +32,21 @@ public class ProductController {
     }
 
     @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<ProductResponse>> getByCategory(@PathVariable Long categoryId) {
-        return ResponseEntity.ok(productService.getByCategory(categoryId));
+    public ResponseEntity<PagedResponse<ProductResponse>> getByCategory(
+            @PathVariable Long categoryId,
+            @RequestParam(defaultValue = "0")    int page,
+            @RequestParam(defaultValue = "12")   int size,
+            @RequestParam(defaultValue = "name") String sort) {
+        return ResponseEntity.ok(productService.getByCategory(categoryId, page, size, sort));
+    }
+
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<PagedResponse<ProductResponse>> getAllIncludingInactive(
+            @RequestParam(defaultValue = "0")    int page,
+            @RequestParam(defaultValue = "100")  int size,
+            @RequestParam(defaultValue = "name") String sort) {
+        return ResponseEntity.ok(productService.getAllIncludingInactive(page, size, sort));
     }
 
     @PostMapping
@@ -52,11 +67,5 @@ public class ProductController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/all")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<ProductResponse>> getAllIncludingInactive() {
-        return ResponseEntity.ok(productService.getAllIncludingInactive());
     }
 }

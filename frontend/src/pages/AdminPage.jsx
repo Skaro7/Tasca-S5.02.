@@ -20,7 +20,8 @@ export default function AdminPage() {
   }, []);
 
   const loadData = () => {
-    api.get('/products/all').then(res => setProducts(res.data));
+    api.get('/products/all', { params: { page: 0, size: 100, sort: 'name' } })
+      .then(res => setProducts(res.data.content));
     api.get('/categories').then(res => setCategories(res.data));
     api.get('/orders').then(res => setOrders(res.data));
   };
@@ -241,7 +242,7 @@ const styles = {
   formGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' },
   input: { padding: '0.6rem', backgroundColor: '#2a2a2a', border: '1px solid #9B4DB8', borderRadius: '8px', color: '#fff', fontSize: '0.9rem' },
   submitBtn: { backgroundColor: '#9B4DB8', color: '#fff', border: 'none', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'pointer' },
-  cancelBtn: { backgroundColor: 'transparent', color: '#aaa', border: '1px solid #555', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'pointer' },
+  cancelBtn: { backgroundColor: 'transparent', color: '#aaa', border: '1px solid #555', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'not-allowed' },
   table: { width: '100%', borderCollapse: 'collapse' },
   th: { color: '#C057E0', padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #2a2a2a' },
   tr: { borderBottom: '1px solid #1a1a1a' },

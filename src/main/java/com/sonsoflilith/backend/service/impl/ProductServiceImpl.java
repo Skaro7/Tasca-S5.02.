@@ -112,12 +112,4 @@ public class ProductServiceImpl implements ProductService {
                 product.isActive()
         );
     }
-
-    @Override
-    public List<ProductResponse> getAllIncludingInactive() {
-        return productRepository.findAll()
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
-    }
 }

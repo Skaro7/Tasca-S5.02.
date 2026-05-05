@@ -13,5 +13,4 @@ public interface ProductService {
     List<ProductResponse> getByCategory(Long categoryId);
     ProductResponse update(Long id, ProductRequest request);
     void delete(Long id);
-    List<ProductResponse> getAllIncludingInactive();
 }

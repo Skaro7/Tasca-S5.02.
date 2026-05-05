@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getAll() {
-        return productRepository.findAll()
+        return productRepository.findByActiveTrue()
                 .stream()
                 .map(this::mapToResponse)
                 .toList();
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getByCategory(Long categoryId) {
-        return productRepository.findByCategoryId(categoryId)
+        return productRepository.findByCategoryIdAndActiveTrue(categoryId)
                 .stream()
                 .map(this::mapToResponse)
                 .toList();
@@ -74,6 +74,10 @@ public class ProductServiceImpl implements ProductService {
         product.setImageUrl(request.getImageUrl());
         product.setCategory(category);
 
+        if (request.getActive() != null) {
+            product.setActive(request.getActive());
+        }
+
         productRepository.save(product);
         return mapToResponse(product);
     }
@@ -82,7 +86,8 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
-        productRepository.delete(product);
+        product.setActive(false);
+        productRepository.save(product);
     }
 
     private ProductResponse mapToResponse(Product product) {
@@ -93,7 +98,16 @@ public class ProductServiceImpl implements ProductService {
                 product.getPrice(),
                 product.getStock(),
                 product.getImageUrl(),
-                product.getCategory().getName()
+                product.getCategory().getName(),
+                product.isActive()
         );
+    }
+
+    @Override
+    public List<ProductResponse> getAllIncludingInactive() {
+        return productRepository.findAll()
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
     }
 }

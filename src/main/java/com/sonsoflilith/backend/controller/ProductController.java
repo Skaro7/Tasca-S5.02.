@@ -53,4 +53,10 @@ public class ProductController {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<ProductResponse>> getAllIncludingInactive() {
+        return ResponseEntity.ok(productService.getAllIncludingInactive());
+    }
 }

@@ -9,6 +9,7 @@ public interface ProductService {
     ProductResponse create(ProductRequest request);
     ProductResponse getById(Long id);
     List<ProductResponse> getAll();
+    List<ProductResponse> getAllIncludingInactive();
     List<ProductResponse> getByCategory(Long categoryId);
     ProductResponse update(Long id, ProductRequest request);
     void delete(Long id);

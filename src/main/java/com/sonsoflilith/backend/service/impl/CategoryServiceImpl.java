@@ -3,6 +3,7 @@ package com.sonsoflilith.backend.service.impl;
 import com.sonsoflilith.backend.dto.request.CategoryRequest;
 import com.sonsoflilith.backend.dto.response.CategoryResponse;
 import com.sonsoflilith.backend.entity.Category;
+import com.sonsoflilith.backend.exception.CategoryNotFoundException;
 import com.sonsoflilith.backend.repository.CategoryRepository;
 import com.sonsoflilith.backend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse getById(Long id) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new CategoryNotFoundException(id));
         return mapToResponse(category);
     }
 
@@ -46,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse update(Long id, CategoryRequest request) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new CategoryNotFoundException(id));
         category.setName(request.getName());
         category.setDescription(request.getDescription());
         categoryRepository.save(category);
@@ -56,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(Long id) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new CategoryNotFoundException(id));
         if (!category.getProducts().isEmpty()) {
             throw new RuntimeException("Cannot delete category with products");
         }

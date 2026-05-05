@@ -5,6 +5,7 @@ import com.sonsoflilith.backend.dto.request.RegisterRequest;
 import com.sonsoflilith.backend.dto.response.AuthResponse;
 import com.sonsoflilith.backend.entity.Role;
 import com.sonsoflilith.backend.entity.User;
+import com.sonsoflilith.backend.exception.UserNotFoundException;
 import com.sonsoflilith.backend.repository.RoleRepository;
 import com.sonsoflilith.backend.repository.UserRepository;
 import com.sonsoflilith.backend.security.JwtService;
@@ -78,7 +79,7 @@ public class AuthServiceImpl implements AuthService {
         String token = jwtService.generateToken(userDetails);
 
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(request.getUsername()));
 
         List<String> roleNames = user.getRoles().stream()
                 .map(role -> role.getName().name())

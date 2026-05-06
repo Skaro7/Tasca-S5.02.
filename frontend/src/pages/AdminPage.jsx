@@ -3,6 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api/axios';
 
+const SORT_OPTIONS = [
+  { label: 'Nombre A-Z',            sort: 'name',  dir: 'asc'  },
+  { label: 'Nombre Z-A',            sort: 'name',  dir: 'desc' },
+  { label: 'Precio: menor a mayor', sort: 'price', dir: 'asc'  },
+  { label: 'Precio: mayor a menor', sort: 'price', dir: 'desc' },
+  { label: 'Más reciente',          sort: 'id',    dir: 'desc' },
+  { label: 'Más antiguo',           sort: 'id',    dir: 'asc'  },
+];
+
 export default function AdminPage() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -14,19 +23,33 @@ export default function AdminPage() {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [sortIndex, setSortIndex] = useState(0);
   const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user?.roles?.includes('ROLE_ADMIN')) { navigate('/'); return; }
-    loadData();
+    loadCategories();
+    loadOrders();
   }, []);
 
-  const loadData = () => {
-    api.get('/products/all', { params: { page: 0, size: 100, sort: 'name' } })
+  useEffect(() => {
+    loadProducts();
+  }, [sortIndex]);
+
+  const loadProducts = () => {
+    const { sort, dir } = SORT_OPTIONS[sortIndex];
+    api.get('/products/all', { params: { page: 0, size: 100, sort, dir } })
       .then(res => setProducts(res.data.content));
-    api.get('/categories').then(res => setCategories(res.data));
-    api.get('/orders').then(res => setOrders(res.data));
+  };
+
+  const loadCategories = () => api.get('/categories').then(res => setCategories(res.data));
+  const loadOrders = () => api.get('/orders').then(res => setOrders(res.data));
+
+  const loadData = () => {
+    loadProducts();
+    loadCategories();
+    loadOrders();
   };
 
   const handleImageChange = (e) => {
@@ -116,7 +139,7 @@ export default function AdminPage() {
         categoryId: categories.find(c => c.name === product.categoryName)?.id,
         active: !product.active
       });
-      loadData();
+      loadProducts();
     } catch { alert('Error al cambiar el estado del producto.'); }
   };
 
@@ -124,7 +147,7 @@ export default function AdminPage() {
     if (!confirm('¿Eliminar este pedido?')) return;
     try {
       await api.delete(`/orders/${id}`);
-      loadData();
+      loadOrders();
     } catch { alert('Error al eliminar el pedido.'); }
   };
 
@@ -133,7 +156,7 @@ export default function AdminPage() {
     try {
       await api.post('/categories', categoryForm);
       setCategoryForm({ name: '', description: '' });
-      loadData();
+      loadCategories();
     } catch { alert('Error al crear la categoría. Puede que ya exista.'); }
   };
 
@@ -141,7 +164,7 @@ export default function AdminPage() {
     if (!confirm('¿Eliminar esta categoría?')) return;
     try {
       await api.delete(`/categories/${id}`);
-      loadData();
+      loadCategories();
     } catch { alert('No se puede eliminar una categoría con productos asociados.'); }
   };
 
@@ -206,6 +229,22 @@ export default function AdminPage() {
               )}
             </div>
           </form>
+
+          <div style={styles.toolbar}>
+            <span style={styles.productCount}>{products.length} producto{products.length !== 1 ? 's' : ''}</span>
+            <div style={styles.sortWrapper}>
+              <span style={styles.sortLabel}>Ordenar por</span>
+              <select
+                style={styles.sortSelect}
+                value={sortIndex}
+                onChange={e => setSortIndex(Number(e.target.value))}
+              >
+                {SORT_OPTIONS.map((opt, i) => (
+                  <option key={i} value={i}>{opt.label}</option>
+                ))}
+              </select>
+            </div>
+          </div>
 
           <table style={styles.table}>
             <thead>
@@ -336,6 +375,11 @@ const styles = {
   submitBtn: { backgroundColor: '#9B4DB8', color: '#fff', border: 'none', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'pointer' },
   submitBtnDisabled: { backgroundColor: '#555', color: '#888', border: 'none', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'not-allowed' },
   cancelBtn: { backgroundColor: 'transparent', color: '#aaa', border: '1px solid #555', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'pointer' },
+  toolbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
+  productCount: { color: '#666', fontSize: '0.85rem' },
+  sortWrapper: { display: 'flex', alignItems: 'center', gap: '0.5rem' },
+  sortLabel: { color: '#aaa', fontSize: '0.85rem' },
+  sortSelect: { backgroundColor: '#1a1a1a', border: '1px solid #9B4DB8', color: '#C057E0', padding: '0.4rem 0.75rem', borderRadius: '8px', fontSize: '0.85rem', cursor: 'pointer' },
   table: { width: '100%', borderCollapse: 'collapse' },
   th: { color: '#C057E0', padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #2a2a2a' },
   tr: { borderBottom: '1px solid #1a1a1a' },

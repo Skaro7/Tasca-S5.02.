@@ -5,6 +5,13 @@ import api from '../api/axios';
 
 const PAGE_SIZE = 12;
 
+const SORT_OPTIONS = [
+  { label: 'Nombre A-Z',            value: 'name',  dir: 'asc'  },
+  { label: 'Precio: menor a mayor', value: 'price', dir: 'asc'  },
+  { label: 'Precio: mayor a menor', value: 'price', dir: 'desc' },
+  { label: 'Más reciente',          value: 'id',    dir: 'desc' },
+];
+
 export default function CatalogPage() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -12,6 +19,7 @@ export default function CatalogPage() {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
+  const [sortIndex, setSortIndex] = useState(0);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -20,17 +28,23 @@ export default function CatalogPage() {
   }, []);
 
   useEffect(() => {
-    const params = { page, size: PAGE_SIZE, sort: 'name' };
+    const { value, dir } = SORT_OPTIONS[sortIndex];
+    const params = { page, size: PAGE_SIZE, sort: value, dir };
     const url = selectedCategory ? `/products/category/${selectedCategory}` : '/products';
     api.get(url, { params }).then(res => {
       setProducts(res.data.content);
       setTotalPages(res.data.totalPages);
       setTotalElements(res.data.totalElements);
     });
-  }, [selectedCategory, page]);
+  }, [selectedCategory, page, sortIndex]);
 
   const filterByCategory = (categoryId) => {
     setSelectedCategory(categoryId);
+    setPage(0);
+  };
+
+  const handleSort = (index) => {
+    setSortIndex(index);
     setPage(0);
   };
 
@@ -75,9 +89,23 @@ export default function CatalogPage() {
         ))}
       </div>
 
-      {totalElements > 0 && (
-        <p style={styles.resultsText}>{totalElements} producto{totalElements !== 1 ? 's' : ''}</p>
-      )}
+      <div style={styles.toolbar}>
+        {totalElements > 0 && (
+          <p style={styles.resultsText}>{totalElements} producto{totalElements !== 1 ? 's' : ''}</p>
+        )}
+        <div style={styles.sortWrapper}>
+          <span style={styles.sortLabel}>Ordenar por</span>
+          <select
+            style={styles.sortSelect}
+            value={sortIndex}
+            onChange={e => handleSort(Number(e.target.value))}
+          >
+            {SORT_OPTIONS.map((opt, i) => (
+              <option key={i} value={i}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
 
       <div style={styles.grid}>
         {products.map(product => (
@@ -159,8 +187,12 @@ const styles = {
   filters: { display: 'flex', gap: '0.5rem', padding: '1rem 2rem', flexWrap: 'wrap' },
   filterBtn: { backgroundColor: 'transparent', border: '1px solid #9B4DB8', color: '#9B4DB8', padding: '0.4rem 1rem', borderRadius: '20px', cursor: 'pointer' },
   filterActive: { backgroundColor: '#9B4DB8', border: '1px solid #9B4DB8', color: '#fff', padding: '0.4rem 1rem', borderRadius: '20px', cursor: 'pointer' },
-  resultsText: { color: '#666', fontSize: '0.85rem', padding: '0 2rem 0.5rem', margin: 0 },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem', padding: '1rem 2rem' },
+  toolbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 2rem 0.75rem' },
+  resultsText: { color: '#666', fontSize: '0.85rem', margin: 0 },
+  sortWrapper: { display: 'flex', alignItems: 'center', gap: '0.5rem' },
+  sortLabel: { color: '#aaa', fontSize: '0.85rem' },
+  sortSelect: { backgroundColor: '#1a1a1a', border: '1px solid #9B4DB8', color: '#C057E0', padding: '0.4rem 0.75rem', borderRadius: '8px', fontSize: '0.85rem', cursor: 'pointer' },
+  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem', padding: '0 2rem 1rem' },
   card: { backgroundColor: '#1a1a1a', borderRadius: '12px', border: '1px solid #2a2a2a', overflow: 'hidden', transition: 'border-color 0.2s' },
   imageContainer: { height: '200px', overflow: 'hidden', backgroundColor: '#2a2a2a' },
   image: { width: '100%', height: '100%', objectFit: 'cover' },

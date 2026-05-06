@@ -23,8 +23,11 @@ public class ProductServiceImpl implements ProductService {
 
     // ── Helper ────────────────────────────────────────────────────────────────
 
-    private Pageable buildPageable(int page, int size, String sort) {
-        return PageRequest.of(page, size, Sort.by(sort).ascending());
+    private Pageable buildPageable(int page, int size, String sort, String dir) {
+        Sort.Direction direction = "desc".equalsIgnoreCase(dir)
+                ? Sort.Direction.DESC
+                : Sort.Direction.ASC;
+        return PageRequest.of(page, size, Sort.by(direction, sort));
     }
 
     // ── Queries ───────────────────────────────────────────────────────────────
@@ -37,25 +40,25 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PagedResponse<ProductResponse> getAll(int page, int size, String sort) {
+    public PagedResponse<ProductResponse> getAll(int page, int size, String sort, String dir) {
         return PagedResponse.from(
-                productRepository.findByActiveTrue(buildPageable(page, size, sort))
+                productRepository.findByActiveTrue(buildPageable(page, size, sort, dir))
                         .map(this::mapToResponse)
         );
     }
 
     @Override
-    public PagedResponse<ProductResponse> getAllIncludingInactive(int page, int size, String sort) {
+    public PagedResponse<ProductResponse> getAllIncludingInactive(int page, int size, String sort, String dir) {
         return PagedResponse.from(
-                productRepository.findAll(buildPageable(page, size, sort))
+                productRepository.findAll(buildPageable(page, size, sort, dir))
                         .map(this::mapToResponse)
         );
     }
 
     @Override
-    public PagedResponse<ProductResponse> getByCategory(Long categoryId, int page, int size, String sort) {
+    public PagedResponse<ProductResponse> getByCategory(Long categoryId, int page, int size, String sort, String dir) {
         return PagedResponse.from(
-                productRepository.findByCategoryIdAndActiveTrue(categoryId, buildPageable(page, size, sort))
+                productRepository.findByCategoryIdAndActiveTrue(categoryId, buildPageable(page, size, sort, dir))
                         .map(this::mapToResponse)
         );
     }

@@ -22,8 +22,9 @@ public class ProductController {
     public ResponseEntity<PagedResponse<ProductResponse>> getAll(
             @RequestParam(defaultValue = "0")    int page,
             @RequestParam(defaultValue = "12")   int size,
-            @RequestParam(defaultValue = "name") String sort) {
-        return ResponseEntity.ok(productService.getAll(page, size, sort));
+            @RequestParam(defaultValue = "name") String sort,
+            @RequestParam(defaultValue = "asc")  String dir) {
+        return ResponseEntity.ok(productService.getAll(page, size, sort, dir));
     }
 
     @GetMapping("/{id}")
@@ -36,8 +37,9 @@ public class ProductController {
             @PathVariable Long categoryId,
             @RequestParam(defaultValue = "0")    int page,
             @RequestParam(defaultValue = "12")   int size,
-            @RequestParam(defaultValue = "name") String sort) {
-        return ResponseEntity.ok(productService.getByCategory(categoryId, page, size, sort));
+            @RequestParam(defaultValue = "name") String sort,
+            @RequestParam(defaultValue = "asc")  String dir) {
+        return ResponseEntity.ok(productService.getByCategory(categoryId, page, size, sort, dir));
     }
 
     @GetMapping("/all")
@@ -45,8 +47,9 @@ public class ProductController {
     public ResponseEntity<PagedResponse<ProductResponse>> getAllIncludingInactive(
             @RequestParam(defaultValue = "0")    int page,
             @RequestParam(defaultValue = "100")  int size,
-            @RequestParam(defaultValue = "name") String sort) {
-        return ResponseEntity.ok(productService.getAllIncludingInactive(page, size, sort));
+            @RequestParam(defaultValue = "name") String sort,
+            @RequestParam(defaultValue = "asc")  String dir) {
+        return ResponseEntity.ok(productService.getAllIncludingInactive(page, size, sort, dir));
     }
 
     @PostMapping

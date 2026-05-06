@@ -8,6 +8,7 @@ import com.sonsoflilith.backend.entity.Order;
 import com.sonsoflilith.backend.entity.OrderItem;
 import com.sonsoflilith.backend.entity.Product;
 import com.sonsoflilith.backend.entity.User;
+import com.sonsoflilith.backend.exception.InsufficientStockException;
 import com.sonsoflilith.backend.exception.OrderNotFoundException;
 import com.sonsoflilith.backend.exception.ProductNotFoundException;
 import com.sonsoflilith.backend.exception.UserNotFoundException;
@@ -44,7 +45,11 @@ public class OrderServiceImpl implements OrderService {
                     .orElseThrow(() -> new ProductNotFoundException(itemRequest.getProductId()));
 
             if (product.getStock() < itemRequest.getQuantity()) {
-                throw new RuntimeException("Insufficient stock for: " + product.getName());
+                throw new InsufficientStockException(
+                        product.getName(),
+                        itemRequest.getQuantity(),
+                        product.getStock()
+                );
             }
 
             product.setStock(product.getStock() - itemRequest.getQuantity());

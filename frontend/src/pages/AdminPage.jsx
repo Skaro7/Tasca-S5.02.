@@ -11,6 +11,9 @@ export default function AdminPage() {
   const [form, setForm] = useState({ name: '', description: '', price: '', stock: '', imageUrl: '', categoryId: '' });
   const [editingId, setEditingId] = useState(null);
   const [categoryForm, setCategoryForm] = useState({ name: '', description: '' });
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -26,15 +29,55 @@ export default function AdminPage() {
     api.get('/orders').then(res => setOrders(res.data));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+  const uploadImage = async () => {
+    if (!imageFile) return form.imageUrl;
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', imageFile);
+      const res = await api.post('/images/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      return res.data.url;
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Error al subir la imagen';
+      alert(msg);
+      return null;
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const imageUrl = await uploadImage();
+      if (imageFile && !imageUrl) return;
+
+      const payload = {
+        ...form,
+        imageUrl: imageUrl || form.imageUrl,
+        price: parseFloat(form.price),
+        stock: parseInt(form.stock),
+        categoryId: parseInt(form.categoryId)
+      };
+
       if (editingId) {
-        await api.put(`/products/${editingId}`, { ...form, price: parseFloat(form.price), stock: parseInt(form.stock), categoryId: parseInt(form.categoryId) });
+        await api.put(`/products/${editingId}`, payload);
       } else {
-        await api.post('/products', { ...form, price: parseFloat(form.price), stock: parseInt(form.stock), categoryId: parseInt(form.categoryId) });
+        await api.post('/products', payload);
       }
+
       setForm({ name: '', description: '', price: '', stock: '', imageUrl: '', categoryId: '' });
+      setImageFile(null);
+      setImagePreview(null);
       setEditingId(null);
       loadData();
     } catch { alert('Error al guardar el producto.'); }
@@ -42,6 +85,8 @@ export default function AdminPage() {
 
   const handleEdit = (product) => {
     setEditingId(product.id);
+    setImageFile(null);
+    setImagePreview(product.imageUrl || null);
     setForm({
       name: product.name,
       description: product.description || '',
@@ -51,6 +96,13 @@ export default function AdminPage() {
       categoryId: categories.find(c => c.name === product.categoryName)?.id || ''
     });
     setTab('products');
+  };
+
+  const handleCancel = () => {
+    setEditingId(null);
+    setImageFile(null);
+    setImagePreview(null);
+    setForm({ name: '', description: '', price: '', stock: '', imageUrl: '', categoryId: '' });
   };
 
   const handleToggleActive = async (product) => {
@@ -117,22 +169,48 @@ export default function AdminPage() {
               <input style={styles.input} placeholder="Descripción" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} />
               <input style={styles.input} placeholder="Precio" type="number" step="0.01" value={form.price} onChange={e => setForm({ ...form, price: e.target.value })} required />
               <input style={styles.input} placeholder="Stock" type="number" value={form.stock} onChange={e => setForm({ ...form, stock: e.target.value })} required />
-              <input style={styles.input} placeholder="URL imagen" value={form.imageUrl} onChange={e => setForm({ ...form, imageUrl: e.target.value })} />
               <select style={styles.input} value={form.categoryId} onChange={e => setForm({ ...form, categoryId: e.target.value })} required>
                 <option value="">Selecciona categoría</option>
                 {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <button style={styles.submitBtn} type="submit">{editingId ? 'Actualizar' : 'Crear'}</button>
-              {editingId && <button style={styles.cancelBtn} type="button" onClick={() => { setEditingId(null); setForm({ name: '', description: '', price: '', stock: '', imageUrl: '', categoryId: '' }); }}>Cancelar</button>}
+
+            <div style={styles.imageSection}>
+              <label style={styles.imageLabel}>Imagen del producto</label>
+              <div style={styles.imageRow}>
+                {imagePreview && (
+                  <img src={imagePreview} alt="preview" style={styles.imagePreview} />
+                )}
+                <div style={styles.imageInputWrapper}>
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    onChange={handleImageChange}
+                    style={styles.fileInput}
+                    id="imageUpload"
+                  />
+                  <label htmlFor="imageUpload" style={styles.fileLabel}>
+                    {imageFile ? imageFile.name : '📁 Seleccionar imagen'}
+                  </label>
+                  <span style={styles.fileHint}>JPG, PNG o WEBP · máx 5MB</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+              <button style={uploading ? styles.submitBtnDisabled : styles.submitBtn} type="submit" disabled={uploading}>
+                {uploading ? 'Subiendo imagen...' : editingId ? 'Actualizar' : 'Crear'}
+              </button>
+              {editingId && (
+                <button style={styles.cancelBtn} type="button" onClick={handleCancel}>Cancelar</button>
+              )}
             </div>
           </form>
 
           <table style={styles.table}>
             <thead>
               <tr>
-                {['Nombre', 'Categoría', 'Precio', 'Stock', 'Estado', 'Acciones'].map(h => (
+                {['Imagen', 'Nombre', 'Categoría', 'Precio', 'Stock', 'Estado', 'Acciones'].map(h => (
                   <th key={h} style={styles.th}>{h}</th>
                 ))}
               </tr>
@@ -140,6 +218,12 @@ export default function AdminPage() {
             <tbody>
               {products.map(p => (
                 <tr key={p.id} style={{ ...styles.tr, opacity: p.active ? 1 : 0.5 }}>
+                  <td style={styles.td}>
+                    {p.imageUrl
+                      ? <img src={p.imageUrl} alt={p.name} style={styles.tableImg} />
+                      : <span style={{ color: '#555' }}>—</span>
+                    }
+                  </td>
                   <td style={styles.td}>{p.name}</td>
                   <td style={styles.td}>{p.categoryName}</td>
                   <td style={styles.td}>{p.price}€</td>
@@ -241,12 +325,22 @@ const styles = {
   formTitle: { color: '#C057E0', marginBottom: '1rem' },
   formGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' },
   input: { padding: '0.6rem', backgroundColor: '#2a2a2a', border: '1px solid #9B4DB8', borderRadius: '8px', color: '#fff', fontSize: '0.9rem' },
+  imageSection: { marginTop: '1rem' },
+  imageLabel: { color: '#C057E0', fontSize: '0.85rem', display: 'block', marginBottom: '0.5rem' },
+  imageRow: { display: 'flex', alignItems: 'center', gap: '1rem' },
+  imagePreview: { width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #9B4DB8' },
+  imageInputWrapper: { display: 'flex', flexDirection: 'column', gap: '0.25rem' },
+  fileInput: { display: 'none' },
+  fileLabel: { backgroundColor: '#2a2a2a', border: '1px solid #9B4DB8', color: '#C057E0', padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', fontSize: '0.9rem' },
+  fileHint: { color: '#555', fontSize: '0.75rem' },
   submitBtn: { backgroundColor: '#9B4DB8', color: '#fff', border: 'none', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'pointer' },
-  cancelBtn: { backgroundColor: 'transparent', color: '#aaa', border: '1px solid #555', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'not-allowed' },
+  submitBtnDisabled: { backgroundColor: '#555', color: '#888', border: 'none', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'not-allowed' },
+  cancelBtn: { backgroundColor: 'transparent', color: '#aaa', border: '1px solid #555', padding: '0.6rem 1.5rem', borderRadius: '8px', cursor: 'pointer' },
   table: { width: '100%', borderCollapse: 'collapse' },
   th: { color: '#C057E0', padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #2a2a2a' },
   tr: { borderBottom: '1px solid #1a1a1a' },
   td: { color: '#fff', padding: '0.75rem' },
+  tableImg: { width: '48px', height: '48px', objectFit: 'cover', borderRadius: '6px' },
   editBtn: { backgroundColor: '#9B4DB8', color: '#fff', border: 'none', padding: '0.3rem 0.75rem', borderRadius: '6px', cursor: 'pointer', marginRight: '0.5rem' },
   deleteBtn: { backgroundColor: '#ff4444', color: '#fff', border: 'none', padding: '0.3rem 0.75rem', borderRadius: '6px', cursor: 'pointer' },
   deactivateBtn: { backgroundColor: '#ff8800', color: '#fff', border: 'none', padding: '0.3rem 0.75rem', borderRadius: '6px', cursor: 'pointer' },

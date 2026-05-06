@@ -7,6 +7,7 @@ export default function ProductDetailPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
@@ -18,7 +19,8 @@ export default function ProductDetailPage() {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
-    navigate('/cart');
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (
@@ -47,9 +49,15 @@ export default function ProductDetailPage() {
                 <span style={styles.qty}>{quantity}</span>
                 <button style={styles.qtyBtn} onClick={() => setQuantity(q => Math.min(product.stock, q + 1))}>+</button>
               </div>
-              <button style={styles.addBtn} onClick={handleAddToCart}>
-                Añadir al carrito
+              <button style={added ? styles.addBtnSuccess : styles.addBtn} onClick={handleAddToCart}>
+                {added ? '✓ Añadido' : 'Añadir al carrito'}
               </button>
+            </div>
+          )}
+          {added && (
+            <div style={styles.addedMsg}>
+              <span>Producto añadido al carrito. </span>
+              <button style={styles.goCartBtn} onClick={() => navigate('/cart')}>Ver carrito →</button>
             </div>
           )}
         </div>
@@ -78,4 +86,7 @@ const styles = {
   qtyBtn: { backgroundColor: '#9B4DB8', border: 'none', color: '#fff', width: '30px', height: '30px', borderRadius: '6px', cursor: 'pointer', fontSize: '1.2rem' },
   qty: { color: '#fff', minWidth: '30px', textAlign: 'center' },
   addBtn: { backgroundColor: '#9B4DB8', color: '#fff', border: 'none', padding: '0.75rem 1.5rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1rem' },
+  addBtnSuccess: { backgroundColor: '#44aa44', color: '#fff', border: 'none', padding: '0.75rem 1.5rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1rem' },
+  addedMsg: { marginTop: '1rem', color: '#aaa', fontSize: '0.9rem' },
+  goCartBtn: { backgroundColor: 'transparent', border: 'none', color: '#C057E0', cursor: 'pointer', fontSize: '0.9rem', textDecoration: 'underline' },
 };
